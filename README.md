@@ -23,12 +23,12 @@
 #### Methods
 * `run()`
     * 根據傳入的 runner path ,及 config 物件執行，會回傳[JsonNode](https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/JsonNode.html)格式的report
-:::info
+```
 以下 Class 對應 **[SideeX Runner Document Config File Format](https://hackmd.io/@sideex/book/%2F%40sideex%2Frunner#Appendix-A---SideeX-Runner-Config-File-Format)**
 每個欄位都有對應的 get, set function 
 ex: Config 的 input 欄位有 setInput(Input input) 及 getInput()
 因此下面指列每個 class 的成員變數
-:::
+```
 ### Config
 
 * Member
