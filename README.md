@@ -1,8 +1,9 @@
 # SideeX API Document (Java)
 > java api repo: https://github.com/fourcolor/sideex-api-java
-:::warning
+```
 以下功能需要將 runner 切到 feat/api-support 這個 branch 才能使用
-:::
+```
+
 ## 將Runner轉成執行檔
 1. 安裝 [pkg](https://www.npmjs.com/package/pkg)
     * 指令 npm install -g pkg
@@ -68,9 +69,9 @@ ex: Config 的 input 欄位有 setInput(Input input) 及 getInput()
     * `Map<String, Object> capbility`
     * ~~`boolean keepSessionAlive`~~ 此功能還尚未整合進去
 ### Session
-:::warning
+```
 Session 功能還尚未整合進去 feat/api-support 
-:::
+```
 
 
 ## Example
