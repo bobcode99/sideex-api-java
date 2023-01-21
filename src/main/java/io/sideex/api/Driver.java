@@ -26,55 +26,55 @@ public class Driver {
 
     public JsonNode run() throws IOException, InterruptedException, Exception {
         Proc proc = new Proc(runnerPath);
-        ProcResult result = proc.run(config.toString());
-        System.out.println(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
+        JsonNode result = proc.run(config.toString());
+        // System.out.println(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
 
-        if (result.getStatus() != 0) {
-            System.out.println(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
-            throw new Exception(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
+        // if (result.getStatus() != 0) {
+        //     System.out.println(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
+        //     throw new Exception(new String(result.getStderr().readAllBytes(), StandardCharsets.UTF_8));
 
-        }
-        return parseReport(result.getStdout());
+        // }
+        return result;
     }
 
-    private JsonNode parseReport(InputStream input) throws IOException {
-        String startToken = "INFO Start to send json report to api";
-        String endToken = "INFO End of sending json report to api";
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        String line = null;
-        boolean flag = false;
-        StringBuilder reportStr = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            if (line.equals(endToken)) {
-                flag = false;
-            }
-            if (flag) {
-                reportStr.append(line);
-            }
-            if (line.equals(startToken)) {
-                flag = true;
-            }
-        }
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(reportStr.toString());
-        return jsonNode;
-    }
+    // private JsonNode parseReport(InputStream input) throws IOException {
+    //     String startToken = "INFO Start to send json report to api";
+    //     String endToken = "INFO End of sending json report to api";
+    //     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+    //     String line = null;
+    //     boolean flag = false;
+    //     StringBuilder reportStr = new StringBuilder();
+    //     while ((line = reader.readLine()) != null) {
+    //         if (line.equals(endToken)) {
+    //             flag = false;
+    //         }
+    //         if (flag) {
+    //             reportStr.append(line);
+    //         }
+    //         if (line.equals(startToken)) {
+    //             flag = true;
+    //         }
+    //     }
+    //     ObjectMapper objectMapper = new ObjectMapper();
+    //     JsonNode jsonNode = objectMapper.readTree(reportStr.toString());
+    //     return jsonNode;
+    // }
 
     public static void main(String[] args) throws IOException, InterruptedException, Exception {
 
         ArrayList<String> testSuites = new ArrayList<String>();
-        testSuites.add("/home/fourcolor/Documents/sideex/sideex-webservice-client/test/test1.json");
+        testSuites.add("C:\\Users\\User\\sideex-api-java\\test.json");
 
         Browser browser = new Browser();
         Map<String, Object> caps = new HashMap();
-        caps.put("browserName", "chrome");
-        browser.setCapbility(caps);
+        caps.put("browserName", "firefox");
+        browser.setCapability(caps);
         ArrayList<Browser> browsers = new ArrayList<Browser>();
         browsers.add(browser);
 
         WebDriverConfig webDriverConfig = new WebDriverConfig();
         webDriverConfig.setBrowsers(browsers);
-        webDriverConfig.setServerUrl("http://172.17.0.1:4444");
+        webDriverConfig.setServerUrl("http://127.0.0.1:4444");
         ArrayList<WebDriverConfig> webDriverConfigs = new ArrayList<WebDriverConfig>();
         webDriverConfigs.add(webDriverConfig);
 
@@ -83,7 +83,7 @@ public class Driver {
         config.getWebdriver().setConfigs(webDriverConfigs);
 
         Driver driver = new Driver(
-                "/home/fourcolor/Documents/sideex/sideex-2021/modules/main/dist/runner/sideex-runner-linux", config);
+                "C:\\Users\\User\\sideex-2021\\modules\\main\\dist\\runner\\sideex-runner-win.exe", config);
 
         JsonNode report = driver.run();
         ObjectMapper objectMapper = new ObjectMapper();

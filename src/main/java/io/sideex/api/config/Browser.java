@@ -6,18 +6,18 @@ import java.util.Map;
 public class Browser {
     private final boolean active = true;
     private boolean keepSessionAlive = false;
-    private Map<String, Object> capbility = Collections.emptyMap();
+    private Map<String, Object> capability = Collections.emptyMap();
 
-    public void setCapbility(Map<String, Object> capbility) {
-        this.capbility = capbility;
+    public void setCapability(Map<String, Object> capability) {
+        this.capability = capability;
     }
 
     public void setKeepSessionAlive(boolean keepSessionAlive) {
         this.keepSessionAlive = keepSessionAlive;
     }
 
-    public Map<String, Object> getCapbility() {
-        return capbility;
+    public Map<String, Object> getCapability() {
+        return capability;
     }
 
     public boolean getKeepSessionAlive() {
