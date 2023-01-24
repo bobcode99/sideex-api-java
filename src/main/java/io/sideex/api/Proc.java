@@ -1,16 +1,13 @@
 package io.sideex.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Map;
-import java.nio.charset.StandardCharsets;
 import com.fasterxml.jackson.databind.JsonNode;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
 public class Proc {
-    private String executable;
+    private final String executable;
 
     public Proc(String executable) {
         this.executable = executable;
@@ -60,9 +57,9 @@ public class Proc {
 }
 
 class ProcResult {
-    private InputStream stdout;
+    private final InputStream stdout;
     // private InputStream stderr;
-    private int status;
+    private final int status;
 
     ProcResult(InputStream stdout, InputStream stderr, int status) {
         this.status = status;

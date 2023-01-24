@@ -7,12 +7,24 @@ public class Play {
     private int speed = 5;
     private Period period = new Period();
 
+    public int getAutoWaitTimeout() {
+        return autoWaitTimeout;
+    }
+
     public void setAutoWaitTimeout(int autoWaitTimeout) {
         this.autoWaitTimeout = autoWaitTimeout;
     }
 
+    public String getEntry() {
+        return entry;
+    }
+
     public void setEntry(String entry) {
         this.entry = entry;
+    }
+
+    public int getMode() {
+        return mode;
     }
 
     public void setMode(int mode) {
@@ -23,8 +35,16 @@ public class Play {
         }
     }
 
+    public Period getPeriod() {
+        return period;
+    }
+
     public void setPeriod(Period period) {
         this.period = period;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public void setSpeed(int speed) {
@@ -33,25 +53,5 @@ public class Play {
         else {
             throw new Error("Unknown speed value " + speed);
         }
-    }
-
-    public int getAutoWaitTimeout() {
-        return autoWaitTimeout;
-    }
-
-    public String getEntry() {
-        return entry;
-    }
-
-    public int getMode() {
-        return mode;
-    }
-
-    public Period getPeriod() {
-        return period;
-    }
-
-    public int getSpeed() {
-        return speed;
     }
 }

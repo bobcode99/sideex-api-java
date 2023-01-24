@@ -8,16 +8,32 @@ public class WebDriverConfig {
     private ArrayList<Browser> browsers = new ArrayList<Browser>();
     private ArrayList<Session> sessions = new ArrayList<Session>();
 
+    public ArrayList<Browser> getBrowsers() {
+        return browsers;
+    }
+
     public void setBrowsers(ArrayList<Browser> browsers) {
         this.browsers = browsers;
+    }
+
+    public String getServerUrl() {
+        return serverUrl;
     }
 
     public void setServerUrl(String serverUrl) {
         this.serverUrl = serverUrl;
     }
 
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
@@ -26,21 +42,5 @@ public class WebDriverConfig {
         else {
             throw new Error("Unknown support webDriver config type " + type);
         }
-    }
-
-    public ArrayList<Browser> getBrowsers() {
-        return browsers;
-    }
-
-    public String getServerUrl() {
-        return serverUrl;
-    }
-
-    public ArrayList<Session> getSessions() {
-        return sessions;
-    }
-
-    public String getType() {
-        return type;
     }
 }

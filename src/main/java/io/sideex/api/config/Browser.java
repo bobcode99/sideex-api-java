@@ -8,19 +8,19 @@ public class Browser {
     private boolean keepSessionAlive = false;
     private Map<String, Object> capability = Collections.emptyMap();
 
-    public void setCapability(Map<String, Object> capability) {
-        this.capability = capability;
-    }
-
-    public void setKeepSessionAlive(boolean keepSessionAlive) {
-        this.keepSessionAlive = keepSessionAlive;
-    }
-
     public Map<String, Object> getCapability() {
         return capability;
     }
 
+    public void setCapability(Map<String, Object> capability) {
+        this.capability = capability;
+    }
+
     public boolean getKeepSessionAlive() {
         return keepSessionAlive;
+    }
+
+    public void setKeepSessionAlive(boolean keepSessionAlive) {
+        this.keepSessionAlive = keepSessionAlive;
     }
 }
