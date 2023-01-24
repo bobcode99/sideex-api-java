@@ -6,8 +6,8 @@ import io.sideex.api.config.Browser;
 import io.sideex.api.config.Config;
 import io.sideex.api.config.WebDriverConfig;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +27,15 @@ public class Driver {
 
         Browser browser = new Browser();
         Map<String, Object> caps = new HashMap();
-        caps.put("browserName", "safari");
+        caps.put("browserName", "chrome");
+        HashMap<String, ArrayList<String>> chromeArgs = new HashMap<>();
+        chromeArgs.put("args", new ArrayList<>(Arrays.asList("headless", "disable-gpu", "window-size=1080,720", "no-sandbox")));
+        caps.put("goog:chromeOptions", chromeArgs);
+
         browser.setCapability(caps);
+
+        System.out.println("browser.getCapability: " + browser.getCapability());
+
         ArrayList<Browser> browsers = new ArrayList<Browser>();
         browsers.add(browser);
 
@@ -43,7 +50,7 @@ public class Driver {
         config.getWebdriver().setConfigs(webDriverConfigs);
 
         Driver driver = new Driver(
-                "/Users/user/sideex-things/runner-testcase/runner-executable-file-oneline/sideex-runner-exe", config);
+                "/Users/user/sideex-things/runner-testcase/runner-executable-file-oneline/sideex-runner-macos-arm64", config);
 
         JsonNode report = driver.run();
         ObjectMapper objectMapper = new ObjectMapper();
