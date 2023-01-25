@@ -20,6 +20,23 @@ public class Driver {
         this.config = config;
     }
 
+    public static ArrayList<String> getBrowserArgs(String browserName) {
+        HashMap<String, ArrayList<String>> browserArgs = new HashMap<>();
+        browserArgs.put("chrome", new ArrayList<>(Arrays.asList("headless", "disable-gpu", "window-size=1080,720", "no-sandbox")));
+        browserArgs.put("firefox", new ArrayList<>(Arrays.asList("-headless","-disable-gpu", "-window-size=1080,720")));
+        browserArgs.put("MicrosoftEdge", new ArrayList<>(Arrays.asList("headless", "disable-gpu", "window-size=1080,720", "no-sandbox")));
+
+        return browserArgs.get(browserName);
+    }
+
+    public static String getBrowserOptions(String browserName) {
+        HashMap<String, String> browserOptions = new HashMap<>();
+        browserOptions.put("chrome", "goog:chromeOptions");
+        browserOptions.put("firefox", "moz:firefoxOptions");
+        browserOptions.put("MicrosoftEdge", "ms:edgeOptions");
+        return browserOptions.get(browserName);
+    }
+
     public static void main(String[] args) throws Exception {
 
         ArrayList<String> testSuites = new ArrayList<String>();
@@ -27,10 +44,17 @@ public class Driver {
 
         Browser browser = new Browser();
         Map<String, Object> caps = new HashMap();
-        caps.put("browserName", "chrome");
-        HashMap<String, ArrayList<String>> chromeArgs = new HashMap<>();
-        chromeArgs.put("args", new ArrayList<>(Arrays.asList("headless", "disable-gpu", "window-size=1080,720", "no-sandbox")));
-        caps.put("goog:chromeOptions", chromeArgs);
+
+        // browserName: {"chrome", "firefox", "MicrosoftEdge"}
+        String browserNameValue = "MicrosoftEdge";
+        caps.put("browserName", browserNameValue);
+        HashMap<String, ArrayList<String>> browserArgs = new HashMap<>();
+
+        // setBrowserArgs: "args": ["-headless","-disable-gpu", "-window-size=1080,720"]
+        browserArgs.put("args", getBrowserArgs(browserNameValue));
+
+        // set browserOptions: "moz:firefoxOptions": {"args": ["-headless","-disable-gpu", "-window-size=1080,720"]}
+        caps.put(getBrowserOptions(browserNameValue), browserArgs);
 
         browser.setCapability(caps);
 
